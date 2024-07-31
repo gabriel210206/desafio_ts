@@ -1,24 +1,31 @@
 import { v4 as uuidv4 } from 'uuid';
 
-const users = [];
+interface User {
+  id: string;
+  name: string;
+  age: number;
+  email: string;
+}
 
-export function createUser(user) {
+const users: User[] = [];
+
+export function createUser(user: User) {
   user.id = uuidv4();
 
   users.push(user);
 }
 
-export function updateUser(user) {
+export function updateUser(user: User) {
   const index = users.findIndex((item) => item.id === user.id);
 
   users[index] = user;
 }
 
-export function getUserByEmail(id) {
+export function getUserByEmail(email: any) {
   return users.find((item) => item.email === email);
 }
 
-export function removeUser(id) {
+export function removeUser(id: string) {
   const index = users.findIndex((item) => item.id === id);
 
   users.splice(index, 1);
